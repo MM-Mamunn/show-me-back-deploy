@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "serve": "node index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "type": "module",
