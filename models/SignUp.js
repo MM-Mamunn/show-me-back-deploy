@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const SignupSchema = new mongoose.Schema(
   {
     // idd: { type: String, required: true },
-    userName: { type: String, required: true },
+    userName: { type: String, required: true, unique: true },
     password: { type: String, default: false },
   },
   {
