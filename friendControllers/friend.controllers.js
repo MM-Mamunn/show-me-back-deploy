@@ -46,5 +46,21 @@ const friends = async (req, res) => {
 };
 
 
-export {frndNew,friends};
+const frndCheck = async (req, res) => {
+  try {
+    const { userName1,userName2 } = req.body;  
+    const ck = await Friend.find({userName1,userName2});
+    const ck2 = await Friend.find({userName2:userName1,userName1:userName2});
+    if(ck.length > 0 || ck2.length > 0) 
+    res.status(200).json({"message":1});
+  else
+  res.status(200).json({"message":0});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+export {frndNew,friends,frndCheck};
 
