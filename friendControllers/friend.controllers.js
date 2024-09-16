@@ -5,10 +5,17 @@ const frndNew = async (req, res) => {
   try {
     console.log(req.body);
     
+    const { userName1,userName2 } = req.body;  
+    const ck = await Friend.find({userName1,userName2});
+    const ck2 = await Friend.find({userName2:userName1,userName1:userName2});
+    if(ck.length > 0 || ck2.length > 0) 
+      throw new Error("Already added")
     const frndNw = await Friend.create(req.body);
-    let t = req.body.userName1;
-    req.body.userName1 = req.body.userName2;
-    req.body.userName2 = t;  
+    
+    
+    // let t = req.body.userName1;
+    // req.body.userName1 = req.body.userName2;
+    // req.body.userName2 = t;  
     
     // const frndNw2 = await Friend.create(req.body);
     res.status(200).json({message:"success"});
